@@ -4,7 +4,6 @@ version: 1.2.0
 load: POSTWORLD
 main: aliuly\signwarp\Main
 author: aliuly
-softdepend: [FastTransfer,WorldProtect]
 website: https://github.com/alejandroliu/pocketmine-plugins/tree/master/SignWarp
 
 permissions:
