@@ -40,7 +40,7 @@ class Main extends PluginBase implements Listener {
 		$this->getLogger("Hello:)");
 		return;
 		}
-		$defaults =
+		const $defaults =
 					 [
 						 "version" => $this->getDescription()->getVersion(),
 						 "# settings" => "configurable variables",
