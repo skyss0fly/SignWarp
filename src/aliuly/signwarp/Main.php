@@ -9,7 +9,7 @@ use pocketmine\command\PluginCommand;
 use pocketmine\event\Listener;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\block\Block;
 use pocketmine\item\Item;
 use pocketmine\tile\Sign;
@@ -37,15 +37,8 @@ class Main extends PluginBase implements Listener {
 	protected $text;
 
 	public function onEnable(){
-		if (!is_dir($this->getDataFolder())) mkdir($this->getDataFolder());
-		mc::plugin_init($this,$this->getFile());
-		$wp = $this->getServer()->getPluginManager()->getPlugin("WorldProtect");
-		if ($wp !== null && version_compare($wp->getDescription()->getVersion(),"2.1.0") < 0) {
-			$this->getLogger()->warning(TextFormat::RED.mc::_("This version of SignWarp requires"));
-			$this->getLogger()->warning(TextFormat::RED.mc::_("at least version 2.1.0 of WorldProtect"));
-			$this->getLogger()->warning(TextFormat::RED.mc::_("Only version %1% available",$wp->getDescription()->getVersion()));
-			throw new \RuntimeException("Runtime checks failed");
-			return;
+		$this->getLogger("Hello:)");
+		return;
 		}
 		$defaults =
 					 [
@@ -72,13 +65,8 @@ class Main extends PluginBase implements Listener {
 
 		$cfg = (new Config($this->getDataFolder()."config.yml",
 								 Config::YAML,$defaults))->getAll();
-
-		if ($this->getServer()->getPluginManager()->getPlugin("FastTransfer")){
-			$this->getLogger()->info(TextFormat::GREEN.mc::_("Enabling FastTransfer support"));
-		}else{
-			$this->getLogger()->warning(TextFormat::BLUE.mc::_("Disabling FastTransfer support"));
-			$cfg["text"]["transfer"] = [];
-		}
+                $cfg = $this->getConfig();
+	
 
 		$this->text = [ "sign" => [] ];
 		foreach (["world","warp","transfer"] as $n) {
